@@ -28,5 +28,5 @@ $app->get('/tree', function() {
     if ($size <= 0)
         $size = 1;
 
-    echo json_encode(['trees' => \models\Tree::find(['limit' => $size, 'offset' => $from])]);
+    echo json_encode(['trees' => Tree::find(['limit' => $size, 'offset' => $from])]);
 });

@@ -1,7 +1,5 @@
 <?php
 
-namespace models;
-
 /**
  * Created by PhpStorm.
  * User: Vince
