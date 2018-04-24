@@ -29,8 +29,7 @@ $app->get('/trees', function() {
         $size = 1;
 
     $trees = iterator_to_array(Tree::find(['limit' => $size, 'offset' => $from]));
-
-    echo json_encode(['data' => array_map(function($tree) {
+    $trees = array_map(function($tree) {
         return [
             'type' => 'trees',
             'id' => $tree->id,
@@ -40,7 +39,10 @@ $app->get('/trees', function() {
                 'picture-url' => $tree->picture_url
             ]
         ];
-    }, $trees)]);
+    }, $trees);
+    $count = Tree::count();
+
+    echo json_encode(['data' => $trees, 'meta' => ['total' => $count]]);
 });
 
 $app->get('/trees/{tree_id}', function($tree_id) {
