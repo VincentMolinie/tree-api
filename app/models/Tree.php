@@ -14,4 +14,6 @@ class tree extends Model
 {
     public $id;
     public $name;
+    public $description;
+    public $picture_url;
 }
