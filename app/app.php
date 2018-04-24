@@ -19,7 +19,7 @@ $app->notFound(function () use($app) {
     echo $app['view']->render('404');
 });
 
-$app->get('/tree', function() {
+$app->get('/trees', function() {
     $from = intval($this->request->getQuery('from')) ?: 0;
     $size = intval($this->request->getQuery('size')) ?: 3;
 
@@ -29,4 +29,13 @@ $app->get('/tree', function() {
         $size = 1;
 
     echo json_encode(['trees' => Tree::find(['limit' => $size, 'offset' => $from])]);
+});
+
+$app->get('/trees/{tree_id}', function($tree_id) {
+    $tree = Tree::findById($tree_id);
+    if ($tree) {
+        echo json_encode(['tree' => $tree]);
+    } else {
+        echo json_encode(['error' => 'NOT_FOUND']);
+    }
 });
