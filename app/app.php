@@ -28,7 +28,19 @@ $app->get('/trees', function() {
     if ($size <= 0)
         $size = 1;
 
-    echo json_encode(['trees' => Tree::find(['limit' => $size, 'offset' => $from])]);
+    $trees = iterator_to_array(Tree::find(['limit' => $size, 'offset' => $from]));
+
+    echo json_encode(['data' => array_map(function($tree) {
+        return [
+            'type' => 'trees',
+            'id' => $tree->id,
+            'attributes' => [
+                'name' => $tree->name,
+                'description' => $tree->description,
+                'picture_url' => $tree->picture_url
+            ]
+        ];
+    }, $trees)]);
 });
 
 $app->get('/trees/{tree_id}', function($tree_id) {
