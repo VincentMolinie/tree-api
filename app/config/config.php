@@ -10,9 +10,9 @@ return new \Phalcon\Config([
     'database' => [
         'adapter'    => 'Mysql',
         'host'       => 'localhost',
-        'username'   => 'root',
-        'password'   => '',
-        'dbname'     => 'test',
+        'username'   => 'treeAdmin',
+        'password'   => '$tA3EspehE6e',
+        'dbname'     => 'tree',
         'charset'    => 'utf8',
     ],
 
