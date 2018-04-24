@@ -37,7 +37,7 @@ $app->get('/trees', function() {
             'attributes' => [
                 'name' => $tree->name,
                 'description' => $tree->description,
-                'picture_url' => $tree->picture_url
+                'picture-url' => $tree->picture_url
             ]
         ];
     }, $trees)]);
